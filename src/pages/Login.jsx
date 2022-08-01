@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate, Link, useLocation } from "react-router-dom";
 import {
   auth,
   logInWithEmailAndPassword,
@@ -12,13 +12,16 @@ function Login() {
   const [password, setPassword] = useState("");
   const [user, loading, error] = useAuthState(auth);
   const navigate = useNavigate();
+  let location = useLocation();
+  let from = location.state?.from?.pathname || "/";
 
   useEffect(() => {
-    if (user) navigate("/");
-  }, [error, user, loading, navigate]);
+    if (user) navigate(from, { replace: true });
+  }, [error, user, loading, navigate, from]);
+
   return (
-    <div className="relative flex flex-col justify-center min-h-screen overflow-hidden">
-      <div className="w-full m-auto border rounded-lg shadow-2xl max-w-lg">
+    <div className="relative flex flex-col justify-center min-h-screen overflow-hidden bg-neutral-50">
+      <div className="w-full m-auto rounded-lg shadow-2xl max-w-lg">
         <h1 className="text-2xl text-center ">Login</h1>
         <div className="px-2">
           <div className="">

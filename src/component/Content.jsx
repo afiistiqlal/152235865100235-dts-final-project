@@ -1,9 +1,14 @@
-import React from 'react'
+import Card from "./Card";
 
-function Content() {
+function Content({ article }) {
   return (
-    <h1 className="text-7xl">Content</h1>
-  )
+    <div>
+      <Card
+        title={article.title}
+        post={article.post}
+      />
+    </div>
+  );
 }
 
-export default Content
+export default Content;

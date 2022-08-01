@@ -1,24 +1,20 @@
-import { Routes, Route } from "react-router-dom";
-import Login from "./pages/Login.jsx";
-import Home from "./pages/Home.jsx";
-import Register from "./pages/Register.jsx";
+import { Outlet } from "react-router-dom";
+import Footer from "./component/Footer";
+import Navbar from "./component/Navbar";
+
 /* 
-* * Important!
-!deprecated
-?should?
-* @param myparam
-Todo: Install router, tailwind, firebase
-//Todo: routing login, firebase auth, DONE!
-Todo: crud blog to firestore
+//Todo: Install react-router, tailwind, firebase, DONE!
+//Todo: routing login, firebase auth, DONE! searchParam,
+Todo: configure auth login page, crud blog to firestore, fetch api, signIn with google
+Todo: Styling
 */
+
 function App() {
   return (
-    <div className="flex flex-col justify-center">
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-      </Routes>
+    <div className="flex flex-col h-screen justify-between">
+      <Navbar />
+      <Outlet />
+      <Footer />
     </div>
   );
 }

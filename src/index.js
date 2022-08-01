@@ -1,15 +1,34 @@
+import "./index.css";
 import React from "react";
 import ReactDOM from "react-dom/client";
-import "./index.css";
-import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import {  BrowserRouter } from "react-router-dom";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
+import App from "./App";
+// import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import NotFound from "./pages/NotFound";
+import Explore from "./content/Explore";
+import MyArticles from "./content/MyArticles";
+import CreateArticle from "./content/CreateArticle";
+import Article from "./component/Article";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App/>
+      <Routes>
+        <Route path="/" element={<App />}>
+          <Route path="" element={<Explore />} />
+          <Route path="createPost" element={<CreateArticle />} />
+          <Route path="explore" element={<Explore />} />
+          <Route path="myarticles" element={<MyArticles />} />
+          <Route path="myarticles/:articleId" element={<Article />} />
+          <Route path="*" element={<NotFound />} />
+        </Route>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+      </Routes>
     </BrowserRouter>
   </React.StrictMode>
 );
