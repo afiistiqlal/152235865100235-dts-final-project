@@ -27,7 +27,7 @@ function Navbar() {
       </div>
       {!user ? (
         <NavLink className="px-4" to="/login">
-          <div className="border hover:underline">Login here</div>
+          <div className="border hover:underline hover:bg-neutral-100 rounded-lg p-2">Login here</div>
         </NavLink>
       ) : (
         <div>
@@ -38,7 +38,7 @@ function Navbar() {
             Create Post
           </NavLink>
           <button
-            className="border bg-slate-100 hover:underline px-4"
+            className="border hover:underline hover:bg-neutral-100 rounded-lg p-2"
             onClick={logout}
           >
             Logout
