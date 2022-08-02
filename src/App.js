@@ -4,8 +4,8 @@ import Navbar from "./component/Navbar";
 
 /* 
 //Todo: Install react-router, tailwind, firebase, DONE!
-//Todo: routing login, firebase auth, DONE! searchParam,
-Todo: configure auth login page, crud blog to firestore, fetch api, signIn with google
+//Todo: routing login, firebase auth, DONE! searchParam, fetch api, signIn with google
+Todo: stay logged in when reload, crud blog to firestore, show all user article in Home
 Todo: Styling
 */
 
