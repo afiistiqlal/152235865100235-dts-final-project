@@ -31,17 +31,17 @@ function Article() {
         <div className="text-base p-2 text-justify">{post}</div>
         <div className="flex flex-row justify-end">
           <div className="text-base flex flex-row p-2">
-            {tags.map((item) => {
+            {tags.map((item, index) => {
               return (
-                <div className="rounded bg-neutral-200 italic mr-1 px-2 text-sm text-right">
+                <div key={index} className="rounded bg-neutral-200 italic ml-1 px-2 text-sm text-right">
                   #{item}{" "}
                 </div>
               );
             })}
           </div>
-          <div className="p-2 text-sm text-transform: capitalize text-right">
-            {author}
-          </div>
+        </div>
+        <div className="p-2 text-sm text-transform: capitalize text-right">
+          {author}
         </div>
         <div className="p-2 text-xs text-right">{time}</div>
       </div>

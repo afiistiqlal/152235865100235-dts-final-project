@@ -106,7 +106,6 @@ const fetchUserName = async (uid) => {
 };
 
 const errorMessage = (err) => {
-  // console.log(err);
   return err;
 };
 
@@ -131,7 +130,6 @@ const saveArticle = async (uid, title, post, author, tags = []) => {
 const updateArticle = async (title, post, postId, thanks) => {
   try {
     await setDoc(doc(db, "article", postId), {
-      // uid: uid,
       title: title,
       post: post,
     });
