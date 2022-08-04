@@ -108,7 +108,7 @@ const fetchUserName = async (uid) => {
 
 const errorMessage = (err) => err;
 
-const saveArticle = async (uid, title, post, author, tags = [], thanks = 0) => {
+const saveArticle = async (uid, title, post, author, tags = []) => {
   try {
     await addDoc(collection(db, "article"), {
       uid: uid,
@@ -117,7 +117,6 @@ const saveArticle = async (uid, title, post, author, tags = [], thanks = 0) => {
       timestamp: Timestamp.fromDate(new Date()),
       author: author,
       tags: tags,
-      thanks: thanks,
     });
     return true;
   } catch (error) {
@@ -127,7 +126,7 @@ const saveArticle = async (uid, title, post, author, tags = [], thanks = 0) => {
   }
 };
 
-const updateArticle = async (title, post, postId) => {
+const updateArticle = async (title, post, postId, thanks) => {
   try {
     await setDoc(doc(db, "article", postId), {
       // uid: uid,

@@ -1,4 +1,4 @@
-import { News } from "../data/news";
+import { getFeed } from "../data/rsstojson";
 import { useSearchParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Card from "../component/Card";
@@ -6,10 +6,11 @@ import Card from "../component/Card";
 function Explore() {
   const [news, setNews] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
+  const feed = getFeed();
 
   useEffect(() => {
-    News.then((data) => {
-      setNews(data.data.articles);
+    feed.then((result) => {
+      setNews(result)
     });
   });
 
@@ -29,6 +30,7 @@ function Explore() {
           }
         }}
       />
+
       {news
         .filter((news) => {
           let filter = searchParams.get("filter");
@@ -43,7 +45,7 @@ function Explore() {
               <a target="_blank" rel="noreferrer" href={item.url}>
                 <Card
                   title={item.title}
-                  post={post?.substring(0, post.indexOf("["))}
+                  post={post}
                 />
               </a>
             </div>

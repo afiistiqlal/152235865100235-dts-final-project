@@ -30,7 +30,7 @@ function Tags({ arrTags }) {
 
   return (
     <div className="my-2">
-      <div className="border rounded-sm">
+      <div className="border rounded p-2">
         <div className="flex flex-wrap">
           {tag.map((item, index) => {
             return (

@@ -6,7 +6,6 @@ import Tags from "../component/Tags";
 function CreateArticle() {
   const [title, setTitle] = useState("");
   const [post, setPost] = useState("");
-  const [thanks, setThanks] = useState(0);
   const [saved, setSaved] = useState(false);
   const [tags, setTags] = useState([]);
   const [author, setAuthor] = useState("");
@@ -16,7 +15,7 @@ function CreateArticle() {
     const user = auth.currentUser;
     if (user) {
         const uid = user.uid;
-        const save = saveArticle(uid, title, post, author, tags, thanks);
+        const save = saveArticle(uid, title, post, author, tags);
         save.then(setSaved(true));
       }
   };
@@ -30,26 +29,26 @@ function CreateArticle() {
   }, [navigate, saved]);
 
   return (
-    <div className="flex flex-col mx-auto border max-w-xl text-base px-4">
-      <div className="">
-        <label htmlFor="" className="block">
+    <div className="flex flex-col mx-10 border rounded text-base px-6">
+      <div className="pt-4">
+        <label htmlFor="" className="block text-lg ">
           Title
         </label>
         <input
           type="text"
-          className="border w-full "
+          className="border w-full rounded p-2"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
       </div>
 
       <div className="">
-        <label htmlFor="" className="block">
+        <label htmlFor="" className="block text-lg">
           Article
         </label>
         <textarea
           type="text"
-          className="border w-full "
+          className="border w-full rounded p-2"
           value={post}
           onChange={(e) => setPost(e.target.value)}
         />
@@ -58,7 +57,7 @@ function CreateArticle() {
       <div className="">
         <input
           type="text"
-          className="border w-full "
+          className="border w-full rounded p-2"
           value={author}
           onChange={(e) => setAuthor(e.target.value)}
           placeholder="author"
@@ -67,13 +66,9 @@ function CreateArticle() {
 
       <Tags arrTags={setTags} />
 
-      <div className="">
-        <button onClick={() => setThanks(thanks + 1)}>Thanks! {thanks}</button>
-      </div>
-
-      <div className="">
+      <div className="pb-6">
         <button
-          className="border px-4 py-2 my-2 rounded"
+          className="border px-4 py-2 my-2 rounded "
           onClick={() => save()}
         >
           Save
