@@ -27,8 +27,8 @@ const firebaseConfig = {
   projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
   storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
   messagingSenderId: process.env.REACT_APP_FIREBASE_SENDER_ID,
-  appId: process.env.REACT_APP_FIREBASE_APP_ID 
-}
+  appId: process.env.REACT_APP_FIREBASE_APP_ID,
+};
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
@@ -59,7 +59,7 @@ const logInWithEmailAndPassword = async (email, password) => {
   try {
     await signInWithEmailAndPassword(auth, email, password);
   } catch (err) {
-    errorMessage(err);
+    errorMessage(err.message);
     console.error(err.message);
   }
 };
@@ -75,7 +75,6 @@ const registerWithEmailAndPassword = async (name, email, password) => {
       email,
     });
   } catch (err) {
-    errorMessage(err);
     console.error(err.message);
   }
 };
@@ -106,7 +105,10 @@ const fetchUserName = async (uid) => {
   }
 };
 
-const errorMessage = (err) => err;
+const errorMessage = (err) => {
+  // console.log(err);
+  return err;
+};
 
 const saveArticle = async (uid, title, post, author, tags = []) => {
   try {
@@ -136,6 +138,23 @@ const updateArticle = async (title, post, postId, thanks) => {
   } catch (error) {
     errorMessage(error);
     console.error(error.message);
+  }
+};
+
+const getAllArticles = async () => {
+  try {
+    const articles = [];
+    const docSnap = await getDocs(collection(db, "article"));
+    docSnap.forEach((doc) => {
+      const data = {
+        id: doc.id,
+        data: doc.data(),
+      };
+      articles.push(data);
+    });
+    return articles;
+  } catch (error) {
+    console.log(error.message);
   }
 };
 
@@ -174,5 +193,6 @@ export {
   saveArticle,
   updateArticle,
   getUserArticles,
+  getAllArticles,
   getArticleById,
 };

@@ -4,7 +4,7 @@ import ReactDOM from "react-dom/client";
 import reportWebVitals from "./reportWebVitals";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import App from "./App";
-// import Home from "./pages/Home";
+import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import NotFound from "./pages/NotFound";
@@ -19,7 +19,7 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />}>
-          <Route path="" element={<Explore />} />
+          <Route path="" element={<Home />} />
           <Route path="createPost" element={<CreateArticle />} />
           <Route path="explore" element={<Explore />} />
           <Route path="myarticles" element={<MyArticles />} />
